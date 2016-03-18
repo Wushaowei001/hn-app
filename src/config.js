@@ -10,7 +10,7 @@ app.config(($stateProvider, $urlRouterProvider, $locationProvider) => {
     $stateProvider
         .state('items', {
             url: '/',
-            template: require('client/items/items.html'),
+            template: require('items/items.html'),
             controller: itemsController
         });
 
