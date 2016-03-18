@@ -1,17 +1,23 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
-import itemsController from './items/items';
+import storiesModule from './stories/index';
 
-const app = angular.module('app', [uiRouter]);
+const app = angular.module('app', [uiRouter, storiesModule.name]);
 
 app.config(($stateProvider, $urlRouterProvider, $locationProvider) => {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-        .state('items', {
+        .state('stories', {
             url: '/',
-            template: require('items/items.html'),
-            controller: itemsController
+            template: require('stories/stories.html'),
+            controller: 'StoriesController',
+            controllerAs: 'str',
+            resolve: {
+                storiesList: function (StoriesService) {
+                    return StoriesService.getStoriesList();
+                }
+            }
         });
 
     $locationProvider.html5Mode(true);

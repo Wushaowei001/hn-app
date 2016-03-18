@@ -1,8 +1,10 @@
 var mongoose = require('mongoose');
-var Item = require('server/db/db').Item;
+var Story = require('server/db/db').Story;
 var express = require('express');
 var router = express.Router();
 
-// routes here
+router.get('/', function(req, res) {
+    res.send([4,1,2,3]);
+});
 
 module.exports = router;

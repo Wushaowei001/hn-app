@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
- mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/items');
+ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/stories');
 
 
-var Item = mongoose.model('Item', {
+var Story = mongoose.model('Story', {
     id: String,
     title: String,
     url: String,
     Date: Date
 });
 
-module.exports.Item = Item;
+module.exports.Story = Story;
