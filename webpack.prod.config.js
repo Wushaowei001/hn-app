@@ -12,7 +12,7 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: ['node_modules', 'src'],
-        extension: ['', '.js', '.scss']
+        extension: ['', '.js', '.css', '.scss']
     },
     module: {
         loaders: [
@@ -27,6 +27,9 @@ module.exports = {
         {
             test: /\.html$/,
             loader: 'raw'
+        },
+        {
+            test: /\.css$/, loader: "style-loader!css-loader"
         },
         {
             test: /\.scss$/,

@@ -14,6 +14,16 @@ storiesService.getTopStoriesFromHN = function (req, res) {
     });
 };
 
+storiesService.getNewStoriesFromHN = function (req, res) {
+    request.get(storiesHelper.getLinkForNewStories(), function (error, response, body) {
+        var ids = storiesHelper.takeTopItems(JSON.parse(body));
+
+        async.map(ids, processStory, function (error, response) {
+            res.json(response);
+        });
+    });
+};
+
 storiesService.getStoryFromHN = function (req, res) {
     var id = req.params.id;
 

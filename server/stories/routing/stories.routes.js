@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var storiesController = require('server/stories/controllers/stories.controller');
+var storiesController = require('../controllers/stories.controller');
 
 router.get('/', storiesController.getTopStories);
 

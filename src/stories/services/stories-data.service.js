@@ -1,13 +1,20 @@
 function StoriesDataService ($http) {
 
     return {
-        getStoriesList,
+        getTopStoriesList,
+        getNewStoriesList,
         getStoryContent,
         getStoryComments
     };
 
-    function getStoriesList () {
+    function getTopStoriesList () {
         return $http.get('/stories').then((result) => {
+            return result.data;
+        });
+    }
+
+    function getNewStoriesList () {
+        return $http.get('/newstories').then((result) => {
             return result.data;
         });
     }

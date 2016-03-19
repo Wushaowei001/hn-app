@@ -10,7 +10,11 @@
   "author": "Dmitry Pisotsky",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.4.9",
+    "angular": "^1.5.2",
+    "angular-animate": "^1.5.2",
+    "angular-aria": "^1.5.2",
+    "angular-material": "^1.0.6",
+    "angular-messages": "^1.5.2",
     "angular-ui-router": "^0.2.17",
     "async": "^1.5.2",
     "body-parser": "^1.14.2",
@@ -19,6 +23,7 @@
     "jquery": "^2.2.0",
     "kerberos": "0.0.18",
     "lodash": "^4.6.1",
+    "mdi": "^1.5.54",
     "mongoose": "^4.4.0",
     "request": "^2.69.0"
   },

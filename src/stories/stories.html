@@ -1,3 +1,51 @@
-<div class="container">
-    <span ng-bind="str.sampleData"></span>
+<div layout="column" flex>
+    <md-toolbar class="md-theme-light">
+        <h2 class="md-toolbar-tools">
+            <span>Hacker news</span>
+            <md-button class="md-icon-button" aria-label="refresh" ng-click="str.reloadList()">
+                <md-tooltip md-direction="left">
+                    Refresh
+                </md-tooltip>
+                <!--<md-icon md-svg-src="img/icons/ic_refresh_24px.svg" style="width: 24px; height: 24px;">-->
+                </md-icon>
+            </md-button>
+        </h2>
+    </md-toolbar>
+    <div layout="column" flex>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Top stories" ng-click="str.selectViewType('top', 'getTopStoriesList', 'topStories')">
+                <md-content class="md-padding">
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="item in str.StoriesService.topStories">
+                            <div class="md-list-item-text">
+                                <h3>{{item.title}}</h3>
+                                <h4>{{item.by}}</h4>
+                                <p>{{item.url | domain}}</p>
+                            </div>
+                            <md-button class="md-secondary">Show</md-button>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+            <md-tab label="Newest" ng-click="str.selectViewType('newest', 'getNewStoriesList', 'newStories')">
+                <md-content class="md-padding">
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="item in str.StoriesService.newStories">
+                            <div class="md-list-item-text">
+                                <h3>{{item.title}}</h3>
+                                <h4>{{item.by}}</h4>
+                                <p>{{item.url | domain}}</p>
+                            </div>
+                            <md-button class="md-secondary">Show</md-button>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </div>
+    <div layout="row" layout-align="center center">
+        <md-progress-circular ng-show="str.StoriesService.loading" md-mode="indeterminate" md-diameter="192"></md-progress-circular>
+    </div>
 </div>
