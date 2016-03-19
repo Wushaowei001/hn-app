@@ -1,13 +1,13 @@
 <div layout="column" flex>
-    <md-toolbar class="md-theme-light">
+    <md-toolbar class="md-theme-light" layout="row" layout-align="space-between center">
         <h2 class="md-toolbar-tools">
             <span>Hacker news</span>
+            <span flex></span>
             <md-button class="md-icon-button" aria-label="refresh" ng-click="str.reloadList()">
                 <md-tooltip md-direction="left">
                     Refresh
                 </md-tooltip>
-                <!--<md-icon md-svg-src="img/icons/ic_refresh_24px.svg" style="width: 24px; height: 24px;">-->
-                </md-icon>
+                <md-icon md-font-icon="fa-refresh" class="fa" style="font-size:24px;"></md-icon>
             </md-button>
         </h2>
     </md-toolbar>

@@ -20,10 +20,8 @@ class StoriesController {
 
     reloadList () {
         if (this.selectedView === viewTypes.top){
-            this.StoriesService.topStories = [];
             this.StoriesService.getTopStoriesList();
         } else if (this.selectedView === viewTypes.newest) {
-            this.StoriesService.newStories = [];
             this.StoriesService.getNewStoriesList();
         }
     }

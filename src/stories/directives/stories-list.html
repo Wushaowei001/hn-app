@@ -2,8 +2,8 @@
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="item in list">
             <div class="md-list-item-text">
-                <h3 ng-click="StoriesService.openLink(item.url)">
-                    {{item.title}}
+                <h3>
+                    <span ng-click="StoriesService.openLink(item.url)">{{item.title}}</span>
                 </h3>
                 <h4>{{item.by}}</h4>
                 <p>{{item.url | domain}}</p>

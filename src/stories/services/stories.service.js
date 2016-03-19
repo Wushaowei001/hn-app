@@ -10,6 +10,7 @@ class StoriesService {
     }
 
     getTopStoriesList () {
+        this.topStories = [];
         this.loading = true;
         this.StoriesDataService.getTopStoriesList().then(list => {
             this.topStories = list;
@@ -18,6 +19,7 @@ class StoriesService {
     }
 
     getNewStoriesList () {
+        this.newStories = [];
         this.loading = true;
         this.StoriesDataService.getNewStoriesList().then(list => {
             this.newStories = list;

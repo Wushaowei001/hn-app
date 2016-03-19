@@ -24,7 +24,6 @@ storiesService.getStoryFromHN = function (req, res) {
             res.json(story);
         });
     })
-
 };
 
 function processStory (id, cb) {
