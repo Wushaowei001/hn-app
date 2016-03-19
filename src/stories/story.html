@@ -1,10 +1,39 @@
 <div layout="column" flex>
-    <md-toolbar class="md-theme-light">
+    <md-toolbar class="md-theme-light" layout="row" layout-align="space-between center">
         <h2 class="md-toolbar-tools">
             <span>Story details</span>
         </h2>
+        <span flex></span>
+        <md-button aria-label="Go Back" ng-click="str.goBack()">
+            Go Back
+        </md-button>
     </md-toolbar>
-    <div layout="row" layout-align="center center">
+    <md-content class="md-padding">
+        <md-list>
+            <md-list-item class="md-3-line">
+                <div class="md-list-item-text">
+                    <h2 ng-click="str.StoriesService.openLink(str.StoriesService.currentStory.url)">
+                        {{str.StoriesService.currentStory.title}}
+                    </h2>
+                    <h4>{{str.StoriesService.currentStory.by}}</h4>
+                    <p>{{str.StoriesService.currentStory.url | domain}}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+
+
+        <md-card ng-repeat="comment in str.StoriesService.currentStory.comments">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-subhead" ng-bind="comment.by"></span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p ng-bind-html="str.renderHtml(comment.text)"></p>
+            </md-card-content>
+        </md-card>
+
+        <div layout="row" layout-align="center center">
         <md-progress-circular ng-show="str.StoriesService.loading" md-mode="indeterminate" md-diameter="192"></md-progress-circular>
     </div>
 </div>

@@ -1,7 +1,8 @@
 class StoriesService {
 
-    constructor (StoriesDataService) {
+    constructor (StoriesDataService, $window) {
         this.StoriesDataService = StoriesDataService;
+        this.$window = $window;
         this.topStories = [];
         this.newStories = [];
         this.currentStory = null;
@@ -25,6 +26,7 @@ class StoriesService {
     }
 
     getStoryContent (storyId) {
+        this.currentStory = null;
         this.loading = true;
         this.StoriesDataService.getStoryContent(storyId).then(content => {
             this.currentStory = content;
@@ -32,6 +34,9 @@ class StoriesService {
         });
     }
 
+    openLink (url) {
+        this.$window.open(url);
+    }
 
 }
 

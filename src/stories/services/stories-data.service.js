@@ -19,7 +19,9 @@ function StoriesDataService ($http) {
     }
 
     function getStoryContent(storyId) {
-        return $http.get(`/stories/${storyId}`);
+        return $http.get(`/stories/${storyId}`).then((result) => {
+            return result.data;
+        });
     }
 
 

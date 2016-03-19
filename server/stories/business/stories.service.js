@@ -4,18 +4,8 @@ var storiesHelper = require('./stories.helper');
 
 var storiesService = {};
 
-storiesService.getTopStoriesFromHN = function (req, res) {
-    request.get(storiesHelper.getLinkForTopStories(), function (error, response, body) {
-        var ids = storiesHelper.takeTopItems(JSON.parse(body));
-
-        async.map(ids, processStory, function (error, response) {
-            res.json(response);
-        });
-    });
-};
-
-storiesService.getNewStoriesFromHN = function (req, res) {
-    request.get(storiesHelper.getLinkForNewStories(), function (error, response, body) {
+storiesService.getStoriesFromHN = function (req, res, link) {
+    request.get(link, function (error, response, body) {
         var ids = storiesHelper.takeTopItems(JSON.parse(body));
 
         async.map(ids, processStory, function (error, response) {

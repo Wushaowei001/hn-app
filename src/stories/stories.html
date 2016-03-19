@@ -18,7 +18,9 @@
                     <md-list>
                         <md-list-item class="md-3-line" ng-repeat="item in str.StoriesService.topStories">
                             <div class="md-list-item-text">
-                                <h3>{{item.title}}</h3>
+                                <h3 ng-click="str.StoriesService.openLink(item.url)">
+                                    {{item.title}}
+                                </h3>
                                 <h4>{{item.by}}</h4>
                                 <p>{{item.url | domain}}</p>
                             </div>
@@ -33,11 +35,13 @@
                     <md-list>
                         <md-list-item class="md-3-line" ng-repeat="item in str.StoriesService.newStories">
                             <div class="md-list-item-text">
-                                <h3>{{item.title}}</h3>
+                                <h3 ng-click="str.StoriesService.openLink(item.url)">
+                                    {{item.title}}
+                                </h3>
                                 <h4>{{item.by}}</h4>
                                 <p>{{item.url | domain}}</p>
                             </div>
-                            <md-button class="md-secondary">Show</md-button>
+                            <md-button class="md-secondary" ng-click="str.showStory(item.id)">Show</md-button>
                             <md-divider ng-if="!$last"></md-divider>
                         </md-list-item>
                     </md-list>
