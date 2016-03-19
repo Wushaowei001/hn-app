@@ -2,9 +2,10 @@ const viewTypes = {top: 0, newest: 1};
 
 class StoriesController {
 
-    constructor(StoriesService) {
+    constructor(StoriesService, $state) {
         this.StoriesService = StoriesService;
         this.selectedView = viewTypes.top;
+        this.$state = $state;
         StoriesService.getTopStoriesList();
     }
 
@@ -27,6 +28,9 @@ class StoriesController {
         }
     }
 
+    showStory (id) {
+        this.$state.go('story', {storyId: id})
+    }
 
 }
 
