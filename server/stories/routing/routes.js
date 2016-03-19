@@ -1,10 +1,7 @@
-var mongoose = require('mongoose');
-var Story = require('server/stories/db/db').Story;
 var express = require('express');
 var router = express.Router();
+var storiesController = require('server/stories/controllers/stories.controller');
 
-router.get('/', function(req, res) {
-    res.send([4,1,2,3]);
-});
+router.get('/', storiesController.getTopStories);
 
 module.exports = router;
