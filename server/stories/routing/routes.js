@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Story = require('server/db/db').Story;
+var Story = require('server/stories/db/db').Story;
 var express = require('express');
 var router = express.Router();
 

@@ -1,5 +1,5 @@
-var itemsRoutes = require('server/stories/routes');
+var storiesRoutes = require('./stories/routing/routes');
 
 module.exports = function routes(app) {
-    app.use('/stories', itemsRoutes);
+    app.use('/stories', storiesRoutes);
 };
