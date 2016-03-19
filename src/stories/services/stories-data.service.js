@@ -3,8 +3,7 @@ function StoriesDataService ($http) {
     return {
         getTopStoriesList,
         getNewStoriesList,
-        getStoryContent,
-        getStoryComments
+        getStoryContent
     };
 
     function getTopStoriesList () {
@@ -23,9 +22,6 @@ function StoriesDataService ($http) {
         return $http.get(`/stories/${storyId}`);
     }
 
-    function getStoryComments (storyId) {
-        return $http.get(`/comments/${storyId}`);
-    }
 
 }
 

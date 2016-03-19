@@ -18,10 +18,10 @@ app.config(($stateProvider, $urlRouterProvider, $locationProvider) => {
 
     $stateProvider
         .state('story', {
-            url: '/story:storyId',
+            url: '/story/:storyId',
             template: require('stories/story.html'),
             controller: 'StoryController',
-            controllerAs: 'story'
+            controllerAs: 'str'
         });
 
     $locationProvider.html5Mode(true);

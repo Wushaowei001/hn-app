@@ -4,6 +4,7 @@ class StoriesService {
         this.StoriesDataService = StoriesDataService;
         this.topStories = [];
         this.newStories = [];
+        this.currentStory = null;
         this.loading = false;
     }
 
@@ -23,13 +24,14 @@ class StoriesService {
         });
     }
 
-    getStoryContent () {
-        return this.StoriesDataService.getStoryContent();
+    getStoryContent (storyId) {
+        this.loading = true;
+        this.StoriesDataService.getStoryContent(storyId).then(content => {
+            this.currentStory = content;
+            this.loading = false;
+        });
     }
 
-    getStoryComments () {
-        return this.StoriesDataService.getStoryComments();
-    }
 
 }
 

@@ -28,19 +28,26 @@ storiesService.getStoryFromHN = function (req, res) {
     var id = req.params.id;
 
     processStory(id, function(error, response) {
-        res.json(response);
+        var story = response;
+        async.map(story.kids, processComments, function (error, response) {
+            story.comments = response;
+            res.json(story);
+        });
     })
-
 
 };
 
 function processStory (id, cb) {
-    request.get(storiesHelper.getLinkForStory(id), function (error, response, body) {
+    request.get(storiesHelper.getLinkForItem(id), function (error, response, body) {
         cb(null, JSON.parse(body));
     })
 }
 
-
+function processComments (id, cb) {
+    request.get(storiesHelper.getLinkForItem(id), function (error, response, body) {
+        cb(null, JSON.parse(body));
+    })
+}
 
 
 module.exports = storiesService;

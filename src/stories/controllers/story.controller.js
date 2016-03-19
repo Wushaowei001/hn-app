@@ -3,7 +3,9 @@ const viewTypes = {top: 0, newest: 1};
 class StoriesController {
 
     constructor(StoriesService, $state, $stateParams) {
-        console.log($stateParams);
+        this.StoriesService = StoriesService;
+
+        StoriesService.getStoryContent($stateParams.storyId);
     }
 
 

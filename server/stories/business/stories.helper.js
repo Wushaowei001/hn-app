@@ -12,7 +12,7 @@ storiesHelper.getLinkForNewStories = function () {
     return config.hn_api_url + config.hn_api_newstories + config.hn_api_url_postfix;
 };
 
-storiesHelper.getLinkForStory = function (id) {
+storiesHelper.getLinkForItem = function (id) {
     return config.hn_api_url + config.hn_api_item + id + config.hn_api_url_postfix;
 };
 
