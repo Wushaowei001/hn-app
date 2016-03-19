@@ -1,0 +1,15 @@
+<md-content class="md-padding">
+    <md-list>
+        <md-list-item class="md-3-line" ng-repeat="item in list">
+            <div class="md-list-item-text">
+                <h3 ng-click="StoriesService.openLink(item.url)">
+                    {{item.title}}
+                </h3>
+                <h4>{{item.by}}</h4>
+                <p>{{item.url | domain}}</p>
+            </div>
+            <md-button class="md-secondary" ng-click="showStory(item.id)">Show</md-button>
+            <md-divider ng-if="!$last"></md-divider>
+        </md-list-item>
+    </md-list>
+</md-content>

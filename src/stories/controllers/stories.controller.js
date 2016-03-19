@@ -28,10 +28,6 @@ class StoriesController {
         }
     }
 
-    showStory (id) {
-        this.$state.go('story', {storyId: id})
-    }
-
 }
 
 export default StoriesController;
