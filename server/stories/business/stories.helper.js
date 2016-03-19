@@ -13,7 +13,7 @@ storiesHelper.getLinkForStory = function (id) {
 };
 
 storiesHelper.takeTopItems = function (items) {
-    return _.takeRight(items.sort(), config.items_counter);
+    return _.take(items, config.items_counter);
 };
 
 
