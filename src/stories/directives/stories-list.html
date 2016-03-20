@@ -1,12 +1,14 @@
-<md-content class="md-padding">
+<md-content class="md-padding" ng-show="!StoriesService.loading">
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="item in list">
             <div class="md-list-item-text">
                 <h3>
                     <span ng-click="StoriesService.openLink(item.url)">{{item.title}}</span>
                 </h3>
-                <h4>{{item.by}}</h4>
-                <p>{{item.url | domain}}</p>
+                <h4>{{item.by}} on {{item.time | timeFilter | date:'medium'}}</h4>
+                <p>
+                    {{item.url | domain}}
+                </p>
             </div>
             <md-button class="md-secondary" ng-click="showStory(item.id)">Show</md-button>
             <md-divider ng-if="!$last"></md-divider>

@@ -10,14 +10,16 @@
         </md-button>
     </md-toolbar>
     <md-content class="md-padding">
-        <md-list>
+        <md-list ng-show="!str.StoriesService.loading">
             <md-list-item class="md-3-line">
                 <div class="md-list-item-text">
                     <h2 ng-click="str.StoriesService.openLink(str.StoriesService.currentStory.url)">
                         {{str.StoriesService.currentStory.title}}
                     </h2>
-                    <h4>{{str.StoriesService.currentStory.by}}</h4>
-                    <p>{{str.StoriesService.currentStory.url | domain}}</p>
+                    <h4>{{str.StoriesService.currentStory.by}} on {{str.StoriesService.currentStory.time | timeFilter | date:'medium'}}</h4>
+                    <p>
+                        {{str.StoriesService.currentStory.url | domain}}
+                    </p>
                 </div>
             </md-list-item>
         </md-list>
@@ -35,6 +37,7 @@
         </md-card>
 
         <div layout="row" layout-align="center center">
-        <md-progress-circular ng-show="str.StoriesService.loading" md-mode="indeterminate" md-diameter="192"></md-progress-circular>
-    </div>
+            <md-progress-circular ng-show="str.StoriesService.loading" md-mode="indeterminate" md-diameter="192"></md-progress-circular>
+        </div>
+    </md-content>
 </div>
