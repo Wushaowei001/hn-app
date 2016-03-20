@@ -13,6 +13,8 @@ function StoriesDataService ($http) {
             }
         }).then((result) => {
             return result.data;
+        }, (error) => {
+            return error;
         });
     }
 
