@@ -13,7 +13,7 @@ class StoriesService {
     getTopStoriesList () {
         this.topStories = [];
         this.loading = true;
-        this.StoriesDataService.getTopStoriesList().then(list => {
+        this.StoriesDataService.getTopStoriesList(this.offLineMode).then(list => {
             this.topStories = list;
             this.loading = false;
         });
@@ -22,7 +22,7 @@ class StoriesService {
     getNewStoriesList () {
         this.newStories = [];
         this.loading = true;
-        this.StoriesDataService.getNewStoriesList().then(list => {
+        this.StoriesDataService.getNewStoriesList(this.offLineMode).then(list => {
             this.newStories = list;
             this.loading = false;
         });
@@ -31,7 +31,7 @@ class StoriesService {
     getStoryContent (storyId) {
         this.currentStory = null;
         this.loading = true;
-        this.StoriesDataService.getStoryContent(storyId).then(content => {
+        this.StoriesDataService.getStoryContent(this.offLineMode, storyId).then(content => {
             this.currentStory = content;
             this.loading = false;
         });

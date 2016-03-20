@@ -6,26 +6,26 @@ function StoriesDataService ($http) {
         getStoryContent
     };
 
-    function simpleGet (route) {
-        return $http.get(route).then((result) => {
+    function getShortcut (route, offline) {
+        return $http.get(route, {
+            params: {
+                offline: offline
+            }
+        }).then((result) => {
             return result.data;
         });
     }
 
-    function getWithCaching (route) {
-
+    function getTopStoriesList (offline) {
+        return getShortcut('/stories', offline);
     }
 
-    function getTopStoriesList () {
-        return simpleGet('/stories');
+    function getNewStoriesList (offline) {
+        return getShortcut('/newstories', offline);
     }
 
-    function getNewStoriesList () {
-        return simpleGet('/newstories');
-    }
-
-    function getStoryContent(storyId) {
-        return simpleGet(`/stories/${storyId}`);
+    function getStoryContent(offline, storyId) {
+        return getShortcut(`/stories/${storyId}`, offline);
     }
 
 
