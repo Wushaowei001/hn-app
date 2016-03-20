@@ -2,11 +2,29 @@ var mongoose = require('mongoose');
  mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/stories');
 
 
-var Story = mongoose.model('Story', {
-    id: String,
+var Story = mongoose.model('story_content', {
+    _id: Number,
     title: String,
     url: String,
-    Date: Date
+    date: Number,
+    kids: [Number]
 });
 
-module.exports.Story = Story;
+var Stories = mongoose.model('stories_list', {
+    name: String,
+    ids: [Number]
+});
+
+var Comment = mongoose.model('comment', {
+    _id: Number,
+    author: String,
+    text: String
+});
+
+var models = {
+    Story: Story,
+    Stories: Stories,
+    Comment: Comment
+};
+
+module.exports = models;

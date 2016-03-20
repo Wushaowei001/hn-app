@@ -1,12 +1,14 @@
 var request = require('request');
 var async = require('async');
 var storiesHelper = require('./stories.helper');
+var dbService = require('./db.service');
 
 var storiesService = {};
 
-storiesService.getStoriesFromHN = function (req, res, link) {
-    request.get(link, function (error, response, body) {
+storiesService.getStoriesFromHN = function (req, res, type) {
+    request.get(storiesHelper.getLinkForStories(type), function (error, response, body) {
         var ids = storiesHelper.takeTopItems(JSON.parse(body));
+        dbService.saveStoriesIds(type, ids);
 
         async.map(ids, processStory, function (error, response) {
             res.json(response);
@@ -28,13 +30,17 @@ storiesService.getStoryFromHN = function (req, res) {
 
 function processStory (id, cb) {
     request.get(storiesHelper.getLinkForItem(id), function (error, response, body) {
-        cb(null, JSON.parse(body));
+        var story = JSON.parse(body);
+        dbService.saveStory(story);
+        cb(null, story);
     })
 }
 
 function processComments (id, cb) {
     request.get(storiesHelper.getLinkForItem(id), function (error, response, body) {
-        cb(null, JSON.parse(body));
+        var comment = JSON.parse(body);
+        dbService.saveComment(comment);
+        cb(null, comment);
     })
 }
 

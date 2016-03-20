@@ -4,11 +4,11 @@ var storiesHelper = require('../business/stories.helper');
 var storiesController = {};
 
 storiesController.getTopStories = function (req, res) {
-    return storiesService.getStoriesFromHN(req, res, storiesHelper.getLinkForTopStories());
+    return storiesService.getStoriesFromHN(req, res, storiesHelper.getTypeNameForTopStories());
 };
 
 storiesController.getNewStories = function (req, res) {
-    return storiesService.getStoriesFromHN(req, res, storiesHelper.getLinkForNewStories());
+    return storiesService.getStoriesFromHN(req, res, storiesHelper.getTypeNameForNewStories());
 };
 
 storiesController.getStoryById = function (req, res) {

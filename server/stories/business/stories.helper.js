@@ -4,12 +4,16 @@ var _ = require('lodash');
 
 var storiesHelper = {};
 
-storiesHelper.getLinkForTopStories = function () {
-    return config.hn_api_url + config.hn_api_topstories + config.hn_api_url_postfix;
+storiesHelper.getLinkForStories = function (type) {
+    return config.hn_api_url + type + config.hn_api_url_postfix;
 };
 
-storiesHelper.getLinkForNewStories = function () {
-    return config.hn_api_url + config.hn_api_newstories + config.hn_api_url_postfix;
+storiesHelper.getTypeNameForTopStories = function (type) {
+    return config.hn_api_topstories;
+};
+
+storiesHelper.getTypeNameForNewStories = function (type) {
+    return config.hn_api_newstories;
 };
 
 storiesHelper.getLinkForItem = function (id) {
