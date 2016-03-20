@@ -7,6 +7,7 @@ class StoriesService {
         this.newStories = [];
         this.currentStory = null;
         this.loading = false;
+        this.offLineMode = false;
     }
 
     getTopStoriesList () {

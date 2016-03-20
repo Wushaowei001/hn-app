@@ -6,22 +6,26 @@ function StoriesDataService ($http) {
         getStoryContent
     };
 
-    function getTopStoriesList () {
-        return $http.get('/stories').then((result) => {
+    function simpleGet (route) {
+        return $http.get(route).then((result) => {
             return result.data;
         });
+    }
+
+    function getWithCaching (route) {
+
+    }
+
+    function getTopStoriesList () {
+        return simpleGet('/stories');
     }
 
     function getNewStoriesList () {
-        return $http.get('/newstories').then((result) => {
-            return result.data;
-        });
+        return simpleGet('/newstories');
     }
 
     function getStoryContent(storyId) {
-        return $http.get(`/stories/${storyId}`).then((result) => {
-            return result.data;
-        });
+        return simpleGet(`/stories/${storyId}`);
     }
 
 
