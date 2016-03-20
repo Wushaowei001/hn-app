@@ -5,6 +5,10 @@ var dbService = {};
 
 dbService.saveStoriesIds = function (name, ids) {
     db.Stories.findOne({'name': name}, function (err, stories) {
+        if (err) {
+            return;
+        }
+
         if (stories) {
             stories.ids = ids;
             stories.save();
@@ -18,6 +22,10 @@ dbService.saveStoriesIds = function (name, ids) {
 
 dbService.saveStory = function (story) {
     db.Story.findOne({'_id': story.id}, function (err, doc) {
+        if (err) {
+            return;
+        }
+
         if (!doc) {
             var newStory = new db.Story({
                 _id: story.id,
@@ -34,6 +42,10 @@ dbService.saveStory = function (story) {
 
 dbService.saveComment = function (comment) {
     db.Comment.findOne({'_id': comment.id}, function (err, doc) {
+        if (err) {
+            return;
+        }
+
         if (!doc) {
             var newStory = new db.Comment({
                 _id: comment.id,
@@ -48,11 +60,15 @@ dbService.saveComment = function (comment) {
 
 dbService.getStoriesFromCache = function (req, res, name) {
     db.Stories.findOne({'name': name}, function (err, stories) {
-        if (!stories) {
-            return res.json([]);
+        if (err || !stories) {
+            return res.send();
         }
 
-        async.map(stories.ids, processStory, function (error, response) {
+        async.map(stories.ids, processStory, function (err, response) {
+            if (err) {
+                return res.send();
+            }
+
             res.json(response);
         });
     });
@@ -61,14 +77,19 @@ dbService.getStoriesFromCache = function (req, res, name) {
 dbService.getStoryFromCache = function (req, res) {
     var id = req.params.id;
 
-    processStory(id, function(error, response) {
+    processStory(id, function(err, response) {
         var story = response;
 
-        if (!story) {
+        if (err || !story) {
             return res.send();
         }
 
-        async.map(story.kids, processComments, function (error, response) {
+        async.map(story.kids, processComments, function (err, response) {
+
+            if (err) {
+                return res.send();
+            }
+
             story.comments = response.filter(function (c) {
                 return c !== null;
             });
@@ -81,13 +102,13 @@ function processStory (id, cb) {
     db.Story.findOne({'_id': id}).lean().exec(function (err, doc) {
         doc.id = doc._id;
         delete doc._id;
-        cb(null, doc);
+        cb(err, doc);
     });
 }
 
 function processComments (id, cb) {
     db.Comment.findOne({'_id': id}).lean().exec(function (err, doc) {
-        cb(null, doc);
+        cb(err, doc);
     });
 }
 
