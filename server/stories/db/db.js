@@ -6,7 +6,8 @@ var Story = mongoose.model('story_content', {
     _id: Number,
     title: String,
     url: String,
-    date: Number,
+    by: String,
+    time: Number,
     kids: [Number]
 });
 

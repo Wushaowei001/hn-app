@@ -31,7 +31,8 @@ dbService.saveStory = function (story) {
                 _id: story.id,
                 title: story.title,
                 url: story.url,
-                date: story.time,
+                time: story.time,
+                by: story.by,
                 kids: story.kids
             });
             newStory.save();
